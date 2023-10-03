@@ -46,13 +46,13 @@ services:
       - traefik.http.routers.rt-frontend.rule=Host(`ploneconf2023.localhost`)
       - traefik.http.routers.rt-frontend.entrypoints=http
       - traefik.http.routers.rt-frontend.service=svc-frontend
-      - traefik.http.routers.frontend.middlewares=gzip
+      - traefik.http.routers.rt-frontend.middlewares=gzip
 
   backend:
     build:
       context: ./backend
     environment:
-      RELSTORAGE_DSN: "dbname='${DB_NAME:-plone}' user='${DB_NAME:-plone}' host='${DB_HOST:-db}' password='${DB_PASSWORD:-IQTGCeuzJQGL}' port='${DB_PORT:-5432}'"
+      RELSTORAGE_DSN: "dbname='plone' user='plone' host='db' password='IQTGCeuzJQGL' port='5432'"
     depends_on:
       - db
     labels:
